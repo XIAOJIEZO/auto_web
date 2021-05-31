@@ -1,0 +1,7 @@
+FROM tomcat:jdk8-openjdk
+
+WORKDIR /usr/local/tomcat/webapps
+
+COPY . .
+
+RUN jar xvf jpress.war
