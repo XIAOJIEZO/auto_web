@@ -20,8 +20,9 @@ def cutout(driver, element):
     lower = element.size['height'] + upper
 
     # 抠图
+    dpr = driver.execute_script('return window.devicePixelRatio')   # 屏幕缩放率
     im = Image.open(img1)
-    img = im.crop((left, upper, right, lower))
+    img = im.crop((left*dpr, upper*dpr, right*dpr, lower*dpr))
     img2 = str(time.time()) + '.png'
     img.save(img2)
 
