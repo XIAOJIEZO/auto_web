@@ -2,8 +2,8 @@ from PIL import Image
 import pytesseract
 import time
 import base64
-import requests
-import urllib
+from urllib import parse
+from urllib import request
 import json
 
 
@@ -52,19 +52,17 @@ def get_complex_captcha(driver, element):
     contents = base64.b64encode(f.read())
     f.close()
 
-
     bodys = {}
     bodys['IMAGE'] = contents
     bodys['IMAGE_TYPE'] = '0'
-    payload = urllib.parse.urlencode(bodys).encode('utf-8')
-    request = urllib.request.Request(url, payload)
+    payload = parse.urlencode(bodys).encode('utf-8')
+    req = request.Request(url, payload)
 
-    request.add_header('Authorization', 'APPCODE ' + appcode)
-    request.add_header('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+    req.add_header('Authorization', 'APPCODE ' + appcode)
+    req.add_header('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
 
-    response = urllib.request.urlopen(request)
+    response = request.urlopen(req)
     resp = json.loads(response.read())
-    code = resp['VERIFY_CODE_ENTITY']['VERIFY_CODE']
+    captcha_code = resp['VERIFY_CODE_ENTITY']['VERIFY_CODE']
 
-    return code
-
+    return captcha_code

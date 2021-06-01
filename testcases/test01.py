@@ -1,6 +1,6 @@
 from selenium import webdriver
-from tools.get_captcha import get_simple_captcha
-from tools.get_captcha import get_complex_captcha
+from auto_web.ToolsUtils.get_captcha import get_complex_captcha
+
 
 class TestCase(object):
     def test_01(self):
