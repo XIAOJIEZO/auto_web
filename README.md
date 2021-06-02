@@ -1,46 +1,30 @@
 ## selenium定位方法
-- id
 ```
+# id
 element = driver.find_element_by_id('kw')
-```
 
-- name
-```
+# name
 element = driver.find_element_by_name('kw')
-```
 
-- xpath
-```
+# xpath
 element = driver.find_element_by_xpath('//*[@id="kw"]')
-```
 
-- css_selector
-```
+# css_selector
 element = driver.find_element_by_css_selector('#kw')
-```
 
-- class_name
-```
+# class_name
 element = find_element_by_class_name('s_ipt')
-```
 
-- link_text
-```
+# link_text
 element = driver.find_element_by_link_text('百度热搜')
-```
 
-- partial_link_text
-```
+# partial_link_text
 element = find_element_by_partial_link_text('首页')
-```
 
-- tag_name
-```
+# tag_name
 element = find_element_by_tag_name('input')[0]
-```
 
-- 综合的一种方法，优先使用ID定位
-```
+# 综合的一种方法，优先使用ID定位
 from selenium.webdriver.common.by import By
 # self.driver.find_element(value='kw').send_keys('selenium')
 self.driver.find_element(By.ID, value='kw').send_keys('selenium')
