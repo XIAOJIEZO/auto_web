@@ -1,32 +1,30 @@
 from time import sleep
 import allure
 
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from auto_web.ToolsUtils.get_captcha import get_complex_captcha
-import unittest
+
+@allure.story('登录流程')
+class TestAdminLogin(object):
+
+    # def __init__(self):
+    #     self.driver = webdriver.Chrome()
+    #     self.driver.get('http://localhost:8080/jpress/admin/login')
+    #     self.driver.maximize_window()
+
+    def setup_class(self):
+        self.driver = webdriver.Chrome()
+        self.driver.get('http://localhost:8080/jpress/admin/login')
+        self.driver.maximize_window()
+
+    def teardown_class(self):
+        self.driver.quit()
 
 
-class TestAdminLogin(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls) -> None:
-        cls.driver = webdriver.Chrome()
-        cls.driver.get('http://localhost:8080/jpress/admin/login')
-        cls.driver.maximize_window()
-
-    @classmethod
-    def tearDownClass(cls) -> None:
-        cls.driver.quit()
-
-    def setUp(self) -> None:
-        print('setup')
-
-    def tearDown(self) -> None:
-        print('teardown')
-
+    @allure.title('验证码不正确')
     # 测试管理员登录验证码错误
     def test_admin_login_code_error(self):
         username = 'admin'
@@ -43,7 +41,7 @@ class TestAdminLogin(unittest.TestCase):
         WebDriverWait(self.driver, 5).until(EC.alert_is_present())
         alert = self.driver.switch_to.alert
 
-        self.assertEqual(alert.text, expected)
+        assert alert.text == expected
         alert.accept()
 
         sleep(5)
@@ -51,6 +49,7 @@ class TestAdminLogin(unittest.TestCase):
         # self.driver.quit()
 
     # 测试登录成功
+    @allure.title('登录成功')
     def test_admin_login_code_ok(self):
         username = 'admin'
         pwd = 'admin'
@@ -68,5 +67,7 @@ class TestAdminLogin(unittest.TestCase):
 
         WebDriverWait(self.driver, 5).until(EC.title_is(expected))
 
-        self.assertEqual(self.driver.title, expected)
+        assert expected == self.driver.title
 
+
+        # self.driver.quit()

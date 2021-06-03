@@ -3,17 +3,27 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from time import sleep
+import allure
+
 
 from auto_web.ToolsUtils.get_captcha import get_complex_captcha
 
 
 class TestUserRegister(object):
-    def __init__(self):
-        # 打开谷歌浏览器
+    # def __init__(self):
+    #     # 打开谷歌浏览器
+    #     self.driver = webdriver.Chrome()
+    #     # 打开首页
+    #     self.driver.get("http://localhost:8080/jpress/user/register")
+    #     self.driver.maximize_window()
+
+    def setup_class(self):
         self.driver = webdriver.Chrome()
-        # 打开首页
-        self.driver.get("http://localhost:8080/jpress/user/register")
+        self.driver.get('http://localhost:8080/jpress/user/register')
         self.driver.maximize_window()
+
+    def teardown_class(self):
+        self.driver.quit()
 
     def test_register_code_error(self):
         username = 'admin01'
@@ -74,7 +84,4 @@ class TestUserRegister(object):
         # 验证
         assert alert.text == expected
         alert.accept()
-
-        self.driver.close()
-        self.driver.quit()
 

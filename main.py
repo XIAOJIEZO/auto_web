@@ -1,6 +1,6 @@
-from auto_web.testcases.basic.test_register import TestUserRegister
-from auto_web.testcases.basic.test_user_login import TestUserLogin
-from auto_web.testcases.basic.test_admin_login import TestAdminLogin
+from auto_web.testcases.test_basic.test_register import TestUserRegister
+from auto_web.testcases.test_basic.test_user_login import TestUserLogin
+from auto_web.testcases.test_basic.test_admin_login import TestAdminLogin
 
 # if __name__ == '__main__':
     # test = TestUserRegister()
