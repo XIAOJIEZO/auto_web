@@ -8,7 +8,9 @@ import json
 
 
 # 抠图
-def cutout(driver, element):
+def cutout(driver, *loc):
+    element = driver.find_element(*loc)
+
     img1 = str(time.time()) + '.png'
     driver.save_screenshot(img1)
 
@@ -20,25 +22,25 @@ def cutout(driver, element):
     lower = element.size['height'] + upper
 
     # 抠图
-    dpr = driver.execute_script('return window.devicePixelRatio')   # 屏幕缩放率
+    dpr = driver.execute_script('return window.devicePixelRatio')  # 屏幕缩放率
     im = Image.open(img1)
-    img = im.crop((left*dpr, upper*dpr, right*dpr, lower*dpr))
+    img = im.crop((left * dpr, upper * dpr, right * dpr, lower * dpr))
     img2 = str(time.time()) + '.png'
     img.save(img2)
 
     return img2
 
 
-def get_simple_captcha(driver, element):
+def get_simple_captcha(driver, *loc):
     # 返回captcha
-    img = cutout(driver, element)
+    img = cutout(driver, *loc)
     captchaimg = Image.open(img)
     code = pytesseract.image_to_string(captchaimg)
 
     return code
 
 
-def get_complex_captcha(driver, element):
+def get_complex_captcha(driver, *loc):
     # api地址
     host = 'https://codevirify.market.alicloudapi.com'
     path = '/icredit_ai_image/verify_code/v1'
@@ -48,7 +50,7 @@ def get_complex_captcha(driver, element):
     appcode = 'c8d7424f4b454c138f97efdf7f072a7d'
 
     # 获取抠图
-    img = cutout(driver, element)
+    img = cutout(driver, *loc)
     f = open(img, 'rb')
     contents = base64.b64encode(f.read())
     f.close()
