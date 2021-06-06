@@ -2,19 +2,43 @@
   "AdminLogin": [
     [
       "/jpress/admin/login",
+      "",
+      "",
+      "",
+      "账号不能为空",
+      "账号为空"
+    ],
+    [
+      "/jpress/admin/login",
+      "admin01",
+      "admin",
+      "",
+      "您没有登录的权限。",
+      "账号不存在"
+    ],
+    [
+      "/jpress/admin/login",
+      "admin",
+      "admin111",
+      "",
+      "用户名或密码不正确",
+      "密码错误"
+    ],
+    [
+      "/jpress/admin/login",
+      "admin",
+      "",
+      "999",
+      "密码不能为空",
+      "密码为空"
+    ],
+    [
+      "/jpress/admin/login",
       "admin",
       "admin",
       "666",
       "验证码不正确，请重新输入",
-      "输入错误验证码"
-    ],
-    [
-      "/jpress/admin/login",
-      "",
-      "admin",
-      "666",
-      "账号不能为空",
-      "账号为空"
+      "错误验证码"
     ],
     [
       "/jpress/admin/login",

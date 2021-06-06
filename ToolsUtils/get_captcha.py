@@ -5,13 +5,14 @@ import base64
 from urllib import parse
 from urllib import request
 import json
+import os
 
 
 # 抠图
 def cutout(driver, *loc):
     element = driver.find_element(*loc)
-
     img1 = str(time.time()) + '.png'
+
     driver.save_screenshot('screenshots/' + img1)
 
     # 左顶点坐标
