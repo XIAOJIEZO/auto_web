@@ -6,7 +6,6 @@ from urllib import parse
 from urllib import request
 import json
 
-
 # 抠图
 def cutout(driver, *loc):
     element = driver.find_element(*loc)
