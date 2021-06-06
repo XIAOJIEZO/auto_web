@@ -13,9 +13,8 @@ class AdminLoginPage(BasePage):
     def __init__(self, driver):
         BasePage.__init__(self, driver)
 
-    def goto_login_page(self):
-        self.driver.get('http://localhost:8080/jpress/admin/login')
-        self.driver.maximize_window()
+    def goto_login_page(self, url):
+        self.goto_page(url)
 
     def input_username(self, username):
         self.input_text(username, *self.__username_input)

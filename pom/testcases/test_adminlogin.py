@@ -1,27 +1,25 @@
-from auto_web.pom.pages.adminLoginPage import AdminLoginPage
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import pytest
 import allure
+
 from time import sleep
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+from auto_web.pom.pages.adminLoginPage import AdminLoginPage
+from auto_web.ToolsUtils.get_test_data import GetTestData
 
 
 @allure.story('用户登录')
 class TestAdminLogin(object):
-    data = [
-        ['admin', 'admin', '666', '验证码不正确，请重新输入', '输入错误验证码'],
-        ['', 'admin', '666', '账号不能为空', '账号为空'],
-
-    ]
+    data = GetTestData().get_json_data('AdminLogin.json', 'AdminLogin')
 
     @allure.title("{desp}")
-    @pytest.mark.parametrize("username, pwd, captcha, expected, desp", data)
-    def test_admin_login(self, driver, username, pwd, captcha, expected, desp):
+    @pytest.mark.parametrize("url, username, pwd, captcha, expected, desp", data)
+    def test_admin_login(self, driver, url, username, pwd, captcha, expected, desp):
         adminLoginPage = AdminLoginPage(driver)
         sleep(1)
-        adminLoginPage.goto_login_page()
+        adminLoginPage.goto_login_page(url)
         sleep(1)
-
         adminLoginPage.input_username(username)
         sleep(1)
         adminLoginPage.input_pwd(pwd)
@@ -40,5 +38,3 @@ class TestAdminLogin(object):
         else:
             WebDriverWait(driver, 5).until(EC.url_changes)
             assert driver.title == expected
-
-        sleep(3)

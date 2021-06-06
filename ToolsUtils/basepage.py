@@ -1,3 +1,6 @@
+from auto_web.ToolsUtils.ReadConfig import ReadConfig
+
+
 class BasePage(object):
     def __init__(self, driver):
         self.driver = driver
@@ -7,6 +10,10 @@ class BasePage(object):
 
         # 获取页面title
         self.page_title = lambda: self.driver.title
+
+    def goto_page(self, url):
+        self.driver.get(ReadConfig().get_test_host() + url)
+        self.driver.maximize_window()
 
     def input_text(self, text, *loc):
         self.find_element(*loc).clear()
