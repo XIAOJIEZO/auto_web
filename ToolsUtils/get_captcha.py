@@ -6,12 +6,13 @@ from urllib import parse
 from urllib import request
 import json
 
+
 # 抠图
 def cutout(driver, *loc):
     element = driver.find_element(*loc)
 
     img1 = str(time.time()) + '.png'
-    driver.save_screenshot(img1)
+    driver.save_screenshot('screenshots/' + img1)
 
     # 左顶点坐标
     left = element.location['x']
@@ -22,10 +23,10 @@ def cutout(driver, *loc):
 
     # 抠图
     dpr = driver.execute_script('return window.devicePixelRatio')  # 屏幕缩放率
-    im = Image.open(img1)
+    im = Image.open('screenshots/' + img1)
     img = im.crop((left * dpr, upper * dpr, right * dpr, lower * dpr))
     img2 = str(time.time()) + '.png'
-    img.save(img2)
+    img.save('screenshots/' + img2)
 
     return img2
 
@@ -50,7 +51,7 @@ def get_complex_captcha(driver, *loc):
 
     # 获取抠图
     img = cutout(driver, *loc)
-    f = open(img, 'rb')
+    f = open('screenshots/' + img, 'rb')
     contents = base64.b64encode(f.read())
     f.close()
 
