@@ -10,6 +10,9 @@ import os
 
 # 抠图
 def cutout(driver, *loc):
+    if not os.path.exists(r'screenshots'):
+        os.mkdir('screenshots')
+
     element = driver.find_element(*loc)
     img1 = str(time.time()) + '.png'
 

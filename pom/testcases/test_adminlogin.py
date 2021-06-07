@@ -9,7 +9,7 @@ from auto_web.pom.pages.adminLoginPage import AdminLoginPage
 from auto_web.ToolsUtils.get_test_data import GetTestData
 
 
-@allure.story('用户登录')
+@allure.story('管理后台用户登录')
 class TestAdminLogin(object):
     data = GetTestData().get_json_data('AdminLogin.json', 'AdminLogin')
 
@@ -28,8 +28,6 @@ class TestAdminLogin(object):
             alert = driver.switch_to.alert
             assert alert.text == expected
             alert.accept()
-
-
         else:
             WebDriverWait(driver, 5).until(EC.url_matches(r'/jpress/admin/index'))
             assert driver.title == expected

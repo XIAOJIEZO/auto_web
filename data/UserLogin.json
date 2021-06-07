@@ -1,0 +1,39 @@
+{
+  "UserLogin": [
+    [
+      "/jpress/user/login",
+      "",
+      "admin",
+      "账号不能为空",
+      "用户名为空"
+    ],
+    [
+      "/jpress/user/login",
+      "adminiii",
+      "admin",
+      "用户名不正确。",
+      "用户名不存在"
+    ],
+    [
+      "/jpress/user/login",
+      "admin",
+      "",
+      "密码不能为空",
+      "密码为空"
+    ],
+    [
+      "/jpress/user/login",
+      "admin",
+      "admin111",
+      "用户名或密码不正确",
+      "密码错误"
+    ],
+    [
+      "/jpress/user/login",
+      "admin",
+      "admin",
+      "用户中心",
+      "登录成功"
+    ]
+  ]
+}
