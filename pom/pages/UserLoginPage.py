@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-
 from auto_web.ToolsUtils.basepage import BasePage
+import allure
 
 
 class UserLoginPage(BasePage):

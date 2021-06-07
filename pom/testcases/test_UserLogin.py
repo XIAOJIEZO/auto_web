@@ -21,10 +21,18 @@ class TestUserLogin(object):
     @pytest.mark.parametrize("url,name,pwd,expected,desp", data)
     @allure.title("{desp}")
     def test_user_login(self, url, name, pwd, expected, desp):
+        '''
+        用例步骤：1.输入用户名 2.输入密码  3.点击登录
+        '''
         self.userLoginPage.goto_page(url)
-        self.userLoginPage.input_name(name)
-        self.userLoginPage.input_pwd(pwd)
-        self.userLoginPage.click_login()
+        with allure.step("输入用户名：" + name):
+            self.userLoginPage.input_name(name)
+
+        with allure.step("输入密码：" + pwd):
+            self.userLoginPage.input_pwd(pwd)
+
+        with allure.step("点击登录"):
+            self.userLoginPage.click_login()
 
         if desp != '登录成功':
             WebDriverWait(self.driver, 5).until(EC.alert_is_present())
@@ -34,7 +42,6 @@ class TestUserLogin(object):
         else:
             WebDriverWait(self.driver, 5).until(EC.url_matches(r"jpress/ucenter"))
             assert self.driver.title == expected
-
 
     @allure.title("跳转注册页面")
     def test_jump_register(self):
