@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from auto_web.ToolsUtils.basepage import BasePage
+from auto_web.toolutils.basepage import BasePage
 import allure
 
 

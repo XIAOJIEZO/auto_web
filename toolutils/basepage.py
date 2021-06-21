@@ -1,5 +1,5 @@
-from auto_web.ToolsUtils.ReadConfig import ReadConfig
-from auto_web.ToolsUtils.logger import logger
+from auto_web.toolutils.readconfig import ReadConfig
+from auto_web.toolutils.logger import logger
 
 class BasePage(object):
     def __init__(self, driver):

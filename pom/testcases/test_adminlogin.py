@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from auto_web.pom.pages.adminLoginPage import AdminLoginPage
-from auto_web.ToolsUtils.get_test_data import GetTestData
+from auto_web.toolutils.get_test_data import GetTestData
 
 
 @allure.story('管理后台用户登录')

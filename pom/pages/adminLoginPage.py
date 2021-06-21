@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-from auto_web.ToolsUtils.basepage import BasePage
-from auto_web.ToolsUtils.get_captcha import get_complex_captcha
+from auto_web.toolutils.basepage import BasePage
+from auto_web.toolutils.get_captcha import get_complex_captcha
 
 
 class AdminLoginPage(BasePage):

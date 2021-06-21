@@ -1,5 +1,5 @@
 from auto_web.pom.pages.UserLoginPage import UserLoginPage
-from auto_web.ToolsUtils.get_test_data import GetTestData
+from auto_web.toolutils.get_test_data import GetTestData
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
